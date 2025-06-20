@@ -52,10 +52,10 @@ code {
   text-transform: capitalize;
 }
 
-.sidebar-list ul li a:hover {
+/*.sidebar-list ul li a:hover {
   color: #151515;
   background: white;
-}
+}*/
 
 .page-header {
   width: 100%;

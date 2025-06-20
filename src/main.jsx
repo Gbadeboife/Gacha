@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./authContext";
 import { Routes, Route } from "react-router-dom";
 import SnackBar from "./components/SnackBar";
@@ -691,6 +692,15 @@ function renderRoutes(role) {
 }
 function Main() {
   const { state } = React.useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  React.useEffect(() => {
+    // Only redirect if we're at the root path
+    if (location.pathname === "/") {
+      navigate("/user/item-manager/table1", { replace: true });
+    }
+  }, [location.pathname, navigate]);
 
   return (
     <div className="h-full">
