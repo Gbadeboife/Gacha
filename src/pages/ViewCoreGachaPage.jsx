@@ -1,12 +1,10 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import * as yup from "yup";
 import MkdSDK from "../utils/MkdSDK";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { tokenExpireError } from "../authContext";
 import { GlobalContext, showToast } from "../globalContext";
-import { isImage, empty, isVideo } from "../utils/utils";
 import lootBoxImage from '../assets/loot-box.png';
 import backpack from "../assets/backpack.png";
 import OutputsManagement from "../components/outputs"; // <-- import OutputsManagement
