@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,38 +9,38 @@ import { GlobalContext, showToast } from "../globalContext";
 import { isImage, empty, isVideo } from "../utils/utils";
 import lootBoxImage from '../assets/loot-box.png';
 import backpack from "../assets/backpack.png";
-
+import OutputsManagement from "../components/outputs"; // <-- import OutputsManagement
 
 let sdk = new MkdSDK();
 
 const ViewCoreGachaPage = () => {
-const { dispatch: globalDispatch } = React.useContext(GlobalContext);
+  const { dispatch: globalDispatch } = React.useContext(GlobalContext);
+  const { dispatch } = React.useContext(GlobalContext);
+  const [viewModel, setViewModel] = React.useState({});
+  const [showOutputs, setShowOutputs] = React.useState(false); // <-- add state
 
-const { dispatch } = React.useContext(GlobalContext);
-const [viewModel, setViewModel] = React.useState({});
+  const params = useParams();
 
-
-
-const params = useParams();
-
-React.useEffect(function () {
+  React.useEffect(function () {
     (async function () {
-    try {
+      try {
         sdk.setTable("posts");
         const result = await sdk.callRestAPI({ id: Number(params?.id) }, "GET");
         if (!result.error) {
-
-            setViewModel(result.model);
-
+          setViewModel(result.model);
         }
-    } catch (error) {
+      } catch (error) {
         console.log("error", error);
         tokenExpireError(dispatch, error.message);
-    }
+      }
     })();
-}, []);
+  }, []);
 
-return (
+  if (showOutputs) {
+    return <OutputsManagement setShowOutputs= {setShowOutputs}/>; // <-- show OutputsManagement if triggered
+  }
+
+  return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
@@ -63,9 +62,11 @@ return (
               <div className="flex items-center justify-center flex-1 py-12">
                 <div className="relative">
                   <img
-                    src= {lootBoxImage}
+                    src={lootBoxImage}
                     alt="Golden Loot Box"
                     className="w-[265px] h-[240px] bg-cover"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setShowOutputs(true)} // <-- handle click
                   />
                 </div>
               </div>
@@ -141,9 +142,7 @@ return (
         </div>
       </div>
     </div>
-)
-
+  )
 }
-
 
 export default ViewCoreGachaPage;

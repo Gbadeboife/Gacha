@@ -141,6 +141,8 @@ import ListUserInventory_protectionTablePage from "./pages/ListUserInventory_pro
 import ViewUserItemsAndValuesPage from "./pages/ViewUserItemsAndValuesPage";
 import ViewCoreGachaPage from "./pages/ViewCoreGachaPage";
 import ViewInventoryDuplicatePage from "./pages/ViewInventoryDuplicatePage";
+import ViewUserChildGachaPage from "./pages/ViewUserChildGachaPage";
+import ViewUserStepSimulationPage from "./pages/ViewStepSimulationPage";
 
 import UserLoginPage from "./pages/UserLoginPage";
 import UserLoginPage2 from "./pages/UserLoginPage2";
@@ -452,8 +454,16 @@ function renderRoutes(role) {
       return (
         <Routes>
           <Route
+            path="/user/step-simulation"
+            element={<ViewUserStepSimulationPage />}
+          ></Route>
+          <Route
             path="/user/item-manager/table1"
             element={<ViewUserItemsAndValuesPage />}
+          ></Route>
+          <Route
+            path="/user/item-manager/table5"
+            element={<ViewUserChildGachaPage />}
           ></Route>
           <Route
             path="/user/item-manager/table2"

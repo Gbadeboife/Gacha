@@ -1,12 +1,7 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import MkdSDK from "../utils/MkdSDK";
 import { useNavigate, useParams } from "react-router-dom";
-import { tokenExpireError } from "../authContext";
 import { GlobalContext, showToast } from "../globalContext";
-import { isImage, empty, isVideo } from "../utils/utils";
 import UploadFilesModal from "../components/UploadFilesModal";
 import { Plus } from "lucide-react";
 import presetImg from "../assets/preset-img.png";
